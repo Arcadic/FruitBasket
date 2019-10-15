@@ -1,5 +1,3 @@
-import { disconnect } from "cluster";
-
 // Enter a description of this program here.
 
 /**
@@ -38,8 +36,8 @@ const fruitCost = {
 
 const apple = document.querySelector("#apples");
 const orange = document.querySelector("#oranges");
-const banana = document.querySelector("bananas");
-const pear = document.querySelector("#pear");
+const banana = document.querySelector("#bananas");
+const pear = document.querySelector("#pears");
 const melon = document.querySelector("#melons");
 const select = document.querySelector("select");
 const output = document.querySelector("output");
@@ -47,22 +45,26 @@ const output = document.querySelector("output");
 output.form.addEventListener("submit", function(event) {
   event.preventDefault();
   let delivery = [select.value];
-  if (delivery == "Daily") {
+  console.log(delivery);
+  if (delivery == "D") {
     let cost =
       Number(fruitCost.apple(apple.value)) +
       Number(fruitCost.orange(orange.value)) +
       Number(fruitCost.banana(banana.value)) +
       Number(fruitCost.pear(pear.value)) +
       Number(fruitCost.melon(melon.value));
-    output.textContent = cost * 0.15;
-  } else if (delivery == "Weekly") {
+    console.log(cost);
+    output.textContent = cost + Number(cost * 0.15);
+  } else if (delivery == "W") {
     let cost =
       Number(fruitCost.apple(apple.value)) +
       Number(fruitCost.orange(orange.value)) +
       Number(fruitCost.banana(banana.value)) +
       Number(fruitCost.pear(pear.value)) +
       Number(fruitCost.melon(melon.value));
-    output.textContent = cost * 0.1;
+    console.log(cost);
+
+    output.textContent = cost + Number(cost * 0.1);
   } else {
     let cost =
       Number(fruitCost.apple(apple.value)) +
@@ -70,6 +72,8 @@ output.form.addEventListener("submit", function(event) {
       Number(fruitCost.banana(banana.value)) +
       Number(fruitCost.pear(pear.value)) +
       Number(fruitCost.melon(melon.value));
-    output.textContent = cost * 0.05;
+    console.log(cost);
+
+    output.textContent = cost + Number(cost * 0.05);
   }
 });
