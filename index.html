@@ -6,9 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Fruit Basket</title>
 </head>
+<style>
+h1 {
+color: red; size: 24; text-shadow: 1px 1px green;
+}
+output{
+  size: 18;
+}
+label {
+  margin: auto;
+  padding: 20px;
+
+}
+
+</style>
+<h1>Welcome to Fruit Basket!</h1>
+<h2>Fruit Basket is a delivery service for fresh fruit straight to your business or home!</h2>
 <body>
   <form action="#">
-    <label>Apples </label>
+    <label>Apples&nbsp&nbsp</label>
     <label for="Apples"></label>
     <input type="number" id="apples"><br>
     <label>Oranges</label>
@@ -17,23 +33,25 @@
     <label>Bananas</label>
     <label for="Bananas"></label>
     <input type="number" id="bananas"><br>
-    <label>Pears</label>
+    <label>Pears&nbsp&nbsp&nbsp&nbsp</label>
     <label for="Pears"></label>
     <input type="number" id="pears"><br>
-    <label>Melon</label>
+    <label>Melon&nbsp&nbsp</label>
     <label for="Melon"></label>
     <input type="number" id="melons"><br>
+    <h3>Price break at 10 pieces for Apples, Oranges, Bananas and Pears.</h3>
 
     <label for="operation">How often do you wish to have the fruit delivered?</label>
     <select name="" id="operation">
-      <option value="D">Daily</option>
-      <option value="W">Weekly</option>
-      <option value="B">Bi-Monthly</option>
+      <option value="daily">Daily</option>
+      <option value="weekly">Weekly</option>
+      <option value="monthly">Monthly</option>
     </select>
     <input type="submit">
     <output>
 
     </output>
+    <p>Daily Delivery Fee: 15%   &nbsp&nbsp&nbsp Weekly Delivery Fee: 10%</h3></p>
   </form>
   <script src="scripts.js"></script>
 </body>
