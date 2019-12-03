@@ -7,6 +7,35 @@
 //Cost Each fruit based on QTY ordered.
 //Idealy there is a way to dynamic track the Qty from the form and pull the variable in, but this is a more simple solution than multiple layers of setting the value of both cost and qty.
 //Found an ideal concise method to avoid code repeat.
+var RegisteredNames = [
+  {
+    name: "Tim Gottman",
+    email: "tg@tg.com",
+    address: {
+      street: "Willow",
+      city: "Pekin",
+      Zip: "61554"
+    },
+    order: {
+      apple: 5,
+      orange: 5,
+      banana: 5,
+      pear: 5,
+      melon: 5,
+      orderType: "weekly",
+      deliveryDate: "Monday"
+    }
+  }
+];
+
+var dropdown = document.getElementById("NameSelector");
+for (var i = 0; i < RegisteredNames.length; ++i) {
+  dropdown[dropdown.length] = new Option(
+    RegisteredNames[i.name],
+    RegisteredNames[i]
+  );
+}
+
 const fruitCost = {
   apple(a) {
     if (a < 10) {
