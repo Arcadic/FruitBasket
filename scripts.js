@@ -28,14 +28,79 @@ var RegisteredNames = [
   }
 ];
 
-var dropdown = document.getElementById("NameSelector");
-for (var i = 0; i < RegisteredNames.length; ++i) {
-  dropdown[dropdown.length] = new Option(
-    RegisteredNames[i.name],
-    RegisteredNames[i]
-  );
+class Detail {
+  constructor(name, street, city, zipcode, totalCost) {
+    this.name = name;
+    this.street = street;
+    this.city = city;
+    this.zipcode = zipcode;
+    this.totalCost = totalCost;
+  }
 }
+var allRegistered = [];
 
+function add_user() {
+  var reg_name = document.getElementById("register-name");
+  var reg_street = document.getElementById("register-street");
+  var reg_city = document.getElementById("register-city");
+  var reg_zipcode = document.getElementById("register-zipcode");
+  var reg_totalCost = deliveryCost[select.value](
+    apple.value,
+    orange.value,
+    banana.value,
+    pear.value,
+    melon.value
+  ).toFixed(2);
+
+  if (
+    reg_name.value == "" ||
+    reg_street.value == "" ||
+    reg_city.value == "" ||
+    reg_zipcode.value == ""
+  ) {
+    alert("All fields must be filled.");
+    return;
+  }
+
+  var temp_detail = new Detail(
+    reg_name.value,
+    reg_street.value,
+    reg_city.value,
+    reg_zipcode.value,
+    reg_totalCost.value
+  );
+
+  //empty old records
+  reg_name.value = reg_street.value = reg_city.value = reg_zipcode.value = "";
+
+  //create new div and append name, street, city and zipcode
+  var old_records_div = document.getElementById("old-records");
+  var new_record_div = document.createElement("DIV");
+  var new_record_name_span = document.createElement("SPAN");
+  var new_record_street_span = document.createElement("SPAN");
+  var new_record_city_span = document.createElement("SPAN");
+  var new_record_zipcode_span = document.createElement("SPAN");
+  var new_record_deliveryCost_span = document.createElement("SPAN");
+
+  new_record_name_span.innerHTML = "Name: " + temp_detail.name;
+  new_record_street_span.innerHTML = "\nStreet: " + temp_detail.street;
+  new_record_city_span.innerHTML = "\nCity: " + temp_detail.city;
+  new_record_zipcode_span.innerHTML = "\nZip Code: " + temp_detail.zipcode;
+  new_record_deliveryCost_span.innerHTML =
+    "\nTotalCost: " + temp_detail.zipcode;
+
+  new_record_div.appendChild(new_record_name_span);
+  new_record_div.appendChild(new_record_street_span);
+  new_record_div.appendChild(new_record_city_span);
+  new_record_div.appendChild(new_record_zipcode_span);
+  new_record_div.appendChild(new_record_deliveryCost_span);
+
+  old_records_div.appendChild(new_record_div);
+
+  //saving record in array and printing the array
+  allRegistered.push(temp_detail);
+  console.log(allRegistered);
+}
 const fruitCost = {
   apple(a) {
     if (a < 10) {
@@ -100,13 +165,15 @@ const output = document.querySelector("output");
 
 output.form.addEventListener("submit", function(event) {
   event.preventDefault();
-  output.textContent = deliveryCost[select.value](
+  const totalCost = deliveryCost[select.value](
     apple.value,
     orange.value,
     banana.value,
     pear.value,
     melon.value
   ).toFixed(2);
+  output.textContent = totalCost;
+  add_user();
 
   // OLD CODE TO CONFIRM WORKING HTML
   //
