@@ -7,26 +7,6 @@
 //Cost Each fruit based on QTY ordered.
 //Idealy there is a way to dynamic track the Qty from the form and pull the variable in, but this is a more simple solution than multiple layers of setting the value of both cost and qty.
 //Found an ideal concise method to avoid code repeat.
-var RegisteredNames = [
-  {
-    name: "Tim Gottman",
-    email: "tg@tg.com",
-    address: {
-      street: "Willow",
-      city: "Pekin",
-      Zip: "61554"
-    },
-    order: {
-      apple: 5,
-      orange: 5,
-      banana: 5,
-      pear: 5,
-      melon: 5,
-      orderType: "weekly",
-      deliveryDate: "Monday"
-    }
-  }
-];
 
 class Detail {
   constructor(name, street, city, zipcode, totalCost) {
@@ -67,7 +47,7 @@ function add_user() {
     reg_street.value,
     reg_city.value,
     reg_zipcode.value,
-    reg_totalCost.value
+    reg_totalCost
   );
 
   //empty old records
@@ -87,7 +67,7 @@ function add_user() {
   new_record_city_span.innerHTML = "\nCity: " + temp_detail.city;
   new_record_zipcode_span.innerHTML = "\nZip Code: " + temp_detail.zipcode;
   new_record_deliveryCost_span.innerHTML =
-    "\nTotalCost: " + temp_detail.zipcode;
+    "\nTotal Cost: $" + temp_detail.totalCost;
 
   new_record_div.appendChild(new_record_name_span);
   new_record_div.appendChild(new_record_street_span);
@@ -165,14 +145,14 @@ const output = document.querySelector("output");
 
 output.form.addEventListener("submit", function(event) {
   event.preventDefault();
-  const totalCost = deliveryCost[select.value](
-    apple.value,
-    orange.value,
-    banana.value,
-    pear.value,
-    melon.value
-  ).toFixed(2);
-  output.textContent = totalCost;
+  // const totalCost = deliveryCost[select.value](
+  //   apple.value,
+  //   orange.value,
+  //   banana.value,
+  //   pear.value,
+  //   melon.value
+  // ).toFixed(2);
+  // output.textContent = totalCost;
   add_user();
 
   // OLD CODE TO CONFIRM WORKING HTML
