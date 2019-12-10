@@ -81,6 +81,37 @@ function add_user() {
   allRegistered.push(temp_detail);
   console.log(allRegistered);
 }
+function displayRecords(r) {
+  var temp_detail = new Detail(
+    r.name.value,
+    r.street.value,
+    r.city.value,
+    r.zipcode.value,
+    r.totalCost
+  );
+  var old_records_div = document.getElementById("old-records");
+  var new_record_div = document.createElement("DIV");
+  var new_record_name_span = document.createElement("SPAN");
+  var new_record_street_span = document.createElement("SPAN");
+  var new_record_city_span = document.createElement("SPAN");
+  var new_record_zipcode_span = document.createElement("SPAN");
+  var new_record_deliveryCost_span = document.createElement("SPAN");
+
+  new_record_name_span.innerHTML = "Name: " + temp_detail.name;
+  new_record_street_span.innerHTML = "\nStreet: " + temp_detail.street;
+  new_record_city_span.innerHTML = "\nCity: " + temp_detail.city;
+  new_record_zipcode_span.innerHTML = "\nZip Code: " + temp_detail.zipcode;
+  new_record_deliveryCost_span.innerHTML =
+    "\nTotal Cost: $" + temp_detail.totalCost;
+
+  new_record_div.appendChild(new_record_name_span);
+  new_record_div.appendChild(new_record_street_span);
+  new_record_div.appendChild(new_record_city_span);
+  new_record_div.appendChild(new_record_zipcode_span);
+  new_record_div.appendChild(new_record_deliveryCost_span);
+
+  old_records_div.appendChild(new_record_div);
+}
 const fruitCost = {
   apple(a) {
     if (a < 10) {
@@ -154,40 +185,43 @@ output.form.addEventListener("submit", function(event) {
   // ).toFixed(2);
   // output.textContent = totalCost;
   add_user();
-
-  // OLD CODE TO CONFIRM WORKING HTML
-  //
-  //  output.textContent = fruitCost.fruitSum();
-  // let delivery = [select.value];
-  // console.log(delivery);
-  // if (delivery == "D") {
-  //   let cost =
-  //     Number(fruitCost.apple(apple.value)) +
-  //     Number(fruitCost.orange(orange.value)) +
-  //     Number(fruitCost.banana(banana.value)) +
-  //     Number(fruitCost.pear(pear.value)) +
-  //     Number(fruitCost.melon(melon.value));
-  //   console.log(cost);
-  //   output.textContent = cost + Number(cost * 0.15);
-  // } else if (delivery == "W") {
-  //   let cost =
-  //     Number(fruitCost.apple(apple.value)) +
-  //     Number(fruitCost.orange(orange.value)) +
-  //     Number(fruitCost.banana(banana.value)) +
-  //     Number(fruitCost.pear(pear.value)) +
-  //     Number(fruitCost.melon(melon.value));
-  //   console.log(cost);
-
-  //   output.textContent = cost + Number(cost * 0.1);
-  // } else {
-  //   let cost =
-  //     Number(fruitCost.apple(apple.value)) +
-  //     Number(fruitCost.orange(orange.value)) +
-  //     Number(fruitCost.banana(banana.value)) +
-  //     Number(fruitCost.pear(pear.value)) +
-  //     Number(fruitCost.melon(melon.value));
-  //   console.log(cost);
-
-  //   output.textContent = cost + Number(cost * 0.05);
-  // }
 });
+output.form.addEventListener("list", function(event) {
+  event.preventDefault();
+  allRegistered.forEach(displayRecords(name));
+});
+// OLD CODE TO CONFIRM WORKING HTML
+//
+//  output.textContent = fruitCost.fruitSum();
+// let delivery = [select.value];
+// console.log(delivery);
+// if (delivery == "D") {
+//   let cost =
+//     Number(fruitCost.apple(apple.value)) +
+//     Number(fruitCost.orange(orange.value)) +
+//     Number(fruitCost.banana(banana.value)) +
+//     Number(fruitCost.pear(pear.value)) +
+//     Number(fruitCost.melon(melon.value));
+//   console.log(cost);
+//   output.textContent = cost + Number(cost * 0.15);
+// } else if (delivery == "W") {
+//   let cost =
+//     Number(fruitCost.apple(apple.value)) +
+//     Number(fruitCost.orange(orange.value)) +
+//     Number(fruitCost.banana(banana.value)) +
+//     Number(fruitCost.pear(pear.value)) +
+//     Number(fruitCost.melon(melon.value));
+//   console.log(cost);
+
+//   output.textContent = cost + Number(cost * 0.1);
+// } else {
+//   let cost =
+//     Number(fruitCost.apple(apple.value)) +
+//     Number(fruitCost.orange(orange.value)) +
+//     Number(fruitCost.banana(banana.value)) +
+//     Number(fruitCost.pear(pear.value)) +
+//     Number(fruitCost.melon(melon.value));
+//   console.log(cost);
+
+//   output.textContent = cost + Number(cost * 0.05);
+// }
