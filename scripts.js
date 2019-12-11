@@ -81,36 +81,24 @@ function add_user() {
   allRegistered.push(temp_detail);
   console.log(allRegistered);
 }
-function displayRecords(r) {
-  var temp_detail = new Detail(
-    r.name.value,
-    r.street.value,
-    r.city.value,
-    r.zipcode.value,
-    r.totalCost
-  );
+function displayRecords() {
+  //create new div and append name, street, city and zipcode
   var old_records_div = document.getElementById("old-records");
-  var new_record_div = document.createElement("DIV");
-  var new_record_name_span = document.createElement("SPAN");
-  var new_record_street_span = document.createElement("SPAN");
-  var new_record_city_span = document.createElement("SPAN");
-  var new_record_zipcode_span = document.createElement("SPAN");
-  var new_record_deliveryCost_span = document.createElement("SPAN");
+  old_records_div.innerHTML = "";
 
-  new_record_name_span.innerHTML = "Name: " + temp_detail.name;
-  new_record_street_span.innerHTML = "\nStreet: " + temp_detail.street;
-  new_record_city_span.innerHTML = "\nCity: " + temp_detail.city;
-  new_record_zipcode_span.innerHTML = "\nZip Code: " + temp_detail.zipcode;
-  new_record_deliveryCost_span.innerHTML =
-    "\nTotal Cost: $" + temp_detail.totalCost;
+  for (var i = 0; i < allRegistered.length; i++) {
+    var temp_detail = allRegistered[i];
+    var new_record_div = document.createElement("DIV");
+    var new_record_name_span = document.createElement("SPAN");
+    var new_record_deliveryCost_span = document.createElement("SPAN");
 
-  new_record_div.appendChild(new_record_name_span);
-  new_record_div.appendChild(new_record_street_span);
-  new_record_div.appendChild(new_record_city_span);
-  new_record_div.appendChild(new_record_zipcode_span);
-  new_record_div.appendChild(new_record_deliveryCost_span);
-
-  old_records_div.appendChild(new_record_div);
+    new_record_name_span.innerHTML = "Name: " + temp_detail.name;
+    new_record_deliveryCost_span.innerHTML =
+      "  Total: $ " + temp_detail.totalCost;
+    new_record_div.appendChild(new_record_name_span);
+    new_record_div.appendChild(new_record_deliveryCost_span);
+    old_records_div.appendChild(new_record_div);
+  }
 }
 const fruitCost = {
   apple(a) {
@@ -186,10 +174,11 @@ output.form.addEventListener("submit", function(event) {
   // output.textContent = totalCost;
   add_user();
 });
-output.form.addEventListener("list", function(event) {
-  event.preventDefault();
-  allRegistered.forEach(displayRecords(name));
-});
+
+// output.form.addEventListener("list", function(event) {
+//   event.preventDefault();
+//   allRegistered.forEach(displayRecords(name));
+// });
 // OLD CODE TO CONFIRM WORKING HTML
 //
 //  output.textContent = fruitCost.fruitSum();
@@ -224,4 +213,3 @@ output.form.addEventListener("list", function(event) {
 //   console.log(cost);
 
 //   output.textContent = cost + Number(cost * 0.05);
-// }
